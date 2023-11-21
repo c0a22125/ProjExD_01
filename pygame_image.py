@@ -15,6 +15,7 @@ def main():
 
     # ゲームループの開始
     tmr = 0
+    bg_x = 0
     while True:
         # イベントの処理
         for event in pg.event.get():
@@ -22,15 +23,18 @@ def main():
                 return  # ウィンドウが閉じられたらゲームループを終了
 
         # 背景の描画
-        screen.blit(bg_img, [0, 0])
-        screen.blit(kk_imgs[1], [300,200])
+        bg_x = tmr
+        screen.blit(bg_img, [-bg_x, 0])
+        screen.blit(bg_img, [1600-bg_x, 0])
+        screen.blit(kk_imgs[tmr % 2], [300,200])#練習5、こうかとんが羽ばたくような動きを実装し表示
         pg.display.update()
 
         # ゲーム内タイマーの更新
         tmr += 1
 
+
         # フレームレートの制御（10FPS）
-        clock.tick(60)
+        clock.tick(100)
 
 if __name__ == "__main__":
     # Pygameの初期化
